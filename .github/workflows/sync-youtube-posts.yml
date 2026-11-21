@@ -1,0 +1,43 @@
+# 유튜브 채널 '게시물' 탭의 새 글을 하루에 한 번 공지사항으로 옮긴다.
+name: 유튜브 게시물 → 공지사항
+
+on:
+  schedule:
+    - cron: '0 22 * * *'   # 매일 22:00 UTC = 한국시간 아침 7시
+  workflow_dispatch:        # Actions 화면에서 'Run workflow' 로 바로 실행할 수도 있다
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-youtube-posts
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 이미지 도구 설치
+        run: pip install --quiet pillow
+
+      - name: 새 게시물 가져오기
+        run: python scripts/sync_youtube_posts.py
+
+      - name: 새 글이 있으면 저장소에 올리기
+        run: |
+          if [ -z "$(git status --porcelain posts images)" ]; then
+            echo "새 게시물 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add posts images
+          git commit -m "유튜브 게시물을 공지사항에 추가"
+          git push
