@@ -296,6 +296,27 @@ tailwind.config = {
   .step-num{ font-family:'Cormorant Garamond', serif; font-weight:700; }
   .notice-row:hover .notice-title{ color:#8b1e2d; text-decoration: underline; text-underline-offset: 3px; }
   #header.glass .util-bar{ display:none; }
+  /* 세미나·집회 일정 */
+  .ev-row{ display:grid; grid-template-columns:4.75rem 1fr auto; align-items:center; gap:1rem; width:100%; text-align:left; padding:1rem .25rem; border-bottom:1px solid #e3e7ee; transition:background .2s ease; }
+  .ev-row:hover{ background:#f7f6f2; }
+  .ev-row:hover .ev-title{ color:#8b1e2d; text-decoration:underline; text-underline-offset:3px; }
+  .ev-date{ background:#0b1f3a; color:#fff; text-align:center; padding:.55rem 0 .5rem; line-height:1; }
+  .ev-mon{ font-size:10.5px; font-weight:700; letter-spacing:.08em; color:#d9b877; }
+  .ev-day{ font-family:'Cormorant Garamond', serif; font-weight:700; font-size:32px; margin-top:.2rem; }
+  .ev-wd{ font-size:11px; color:rgba(255,255,255,.7); margin-top:.2rem; }
+  .ev-badge{ display:inline-block; font-size:10.5px; font-weight:800; padding:.15rem .45rem; background:#8b1e2d; color:#fff; letter-spacing:.02em; }
+  .ev-badge.ev-now{ background:#c49a56; color:#071a33; }
+  .ev-badge.ev-past{ background:#e3e7ee; color:#5b6b82; }
+  .ev-row.is-past .ev-date{ background:#e9ecf1; color:#5b6b82; }
+  .ev-row.is-past .ev-mon{ color:#8a97aa; }
+  .ev-row.is-past .ev-wd{ color:#8a97aa; }
+  .ev-row.is-past .ev-title{ color:#3f4f66; }
+  @media (max-width:639px){ .ev-row{ grid-template-columns:4rem 1fr; gap:.85rem; } .ev-row .ev-go{ display:none; } .ev-day{ font-size:27px; } }
+  /* 다음 단계 */
+  .next-tile{ display:flex; align-items:center; gap:1rem; height:100%; padding:1.4rem 1.25rem; background:#0b1f3a; transition:background .25s ease; }
+  .next-tile:hover{ background:#123059; }
+  .next-tile:hover .next-arrow{ transform:translateX(4px); color:#d9b877; }
+  .next-arrow{ transition:transform .25s ease, color .25s ease; }
 </style>
 </head>
 <body>
@@ -324,6 +345,7 @@ tailwind.config = {
       <div class="tracking-[0.18em] uppercase text-[10.5px] text-white/50">Dunamis &amp; Sophia University · Korea Gapyeong Campus</div>
       <ul class="flex items-center divide-x divide-white/15">
         <li class="px-3"><a href="#admission" class="hover:text-white">입학 안내</a></li>
+        <li class="px-3"><a href="#events" class="hover:text-white">세미나·집회 일정</a></li>
         <li class="px-3"><a href="#board" class="hover:text-white">공지사항</a></li>
         <li class="px-3"><a href="#contact" class="hover:text-white">오시는 길</a></li>
         <li class="pl-3"><a href="https://www.youtube.com/channel/UCr9PGzwTyw00UPQktjLECMg" target="_blank" rel="noopener" class="hover:text-white inline-flex items-center gap-1.5"><i class="fa-brands fa-youtube text-red-400"></i> YouTube</a></li>
@@ -370,6 +392,7 @@ tailwind.config = {
       <li><a href="#greeting" class="flex justify-between items-center py-3.5 border-b border-white/10">원장 인사 <i class="fa-solid fa-chevron-right text-xs text-gold-400"></i></a></li>
       <li><a href="#program" class="flex justify-between items-center py-3.5 border-b border-white/10">학과·교육 <i class="fa-solid fa-chevron-right text-xs text-gold-400"></i></a></li>
       <li><a href="#admission" class="flex justify-between items-center py-3.5 border-b border-white/10">입학 안내 <i class="fa-solid fa-chevron-right text-xs text-gold-400"></i></a></li>
+      <li><a href="#events" class="flex justify-between items-center py-3.5 border-b border-white/10">세미나 · 집회 일정 <i class="fa-solid fa-chevron-right text-xs text-gold-400"></i></a></li>
       <li><a href="#board" class="flex justify-between items-center py-3.5 border-b border-white/10">공지사항 <i class="fa-solid fa-chevron-right text-xs text-gold-400"></i></a></li>
       <li><a href="#lectures" class="flex justify-between items-center py-3.5 border-b border-white/10">미디어 <i class="fa-solid fa-chevron-right text-xs text-gold-400"></i></a></li>
       <li><a href="#gallery-section" class="flex justify-between items-center py-3.5 border-b border-white/10">포토 갤러리 <i class="fa-solid fa-chevron-right text-xs text-gold-400"></i></a></li>
@@ -442,6 +465,22 @@ tailwind.config = {
         <div class="short-card skeleton aspect-video rounded-xl"></div>
         <div class="short-card skeleton aspect-video rounded-xl"></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 세미나·집회 일정: posts/*.md 머리말에 event_date 가 있는 글만 모아서 보여 준다 -->
+<section id="events" class="py-14 sm:py-20 bg-white border-b border-navy-100 scroll-mt-20">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+      <div>
+        <div class="sec-label">Events</div>
+        <h2 class="mt-3 ktitle text-2xl sm:text-[34px] text-navy-900">세미나 · 집회 일정</h2>
+      </div>
+      <span class="text-[11px] sm:text-xs text-navy-500">일정을 누르면 자세한 안내를 볼 수 있습니다</span>
+    </div>
+    <div id="events-container" class="mt-5 border-t-2 border-navy-900">
+      <div class="text-center text-navy-400 py-10 text-sm border-b border-navy-100"><i class="fa-solid fa-circle-notch fa-spin mr-2"></i>일정을 불러오는 중입니다...</div>
     </div>
   </div>
 </section>
@@ -711,6 +750,29 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- 다음 단계: 페이지 끝까지 본 사람이 바로 움직일 수 있게 -->
+<section id="next-steps" aria-labelledby="next-steps-title" class="bg-navy-900 text-white">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <div class="sec-label" style="color:#d9b877">Next Steps</div>
+    <h2 id="next-steps-title" class="mt-3 ktitle text-2xl sm:text-[30px]">DSU 한국가평분교와 함께하기</h2>
+    <p class="mt-2 text-white/60 text-xs sm:text-sm">입학과 수강, 세미나 참석에 관해 궁금한 점은 언제든 문의해 주세요.</p>
+    <ul class="mt-7 grid sm:grid-cols-3 gap-px bg-white/15 border border-white/15">
+      <li><a href="#admission" class="next-tile">
+        <i class="fa-solid fa-user-graduate text-2xl text-gold-400 w-8 text-center"></i>
+        <div class="flex-1 min-w-0"><div class="font-bold text-[15px]">입학 · 수강 문의</div><div class="mt-0.5 text-xs text-white/55">문의 양식이나 전화·문자로 상담</div></div>
+        <i class="next-arrow fa-solid fa-arrow-right text-sm text-white/50"></i></a></li>
+      <li><a href="#events" class="next-tile">
+        <i class="fa-solid fa-calendar-days text-2xl text-gold-400 w-8 text-center"></i>
+        <div class="flex-1 min-w-0"><div class="font-bold text-[15px]">세미나 · 집회 일정</div><div class="mt-0.5 text-xs text-white/55">다가오는 강의와 집회 확인</div></div>
+        <i class="next-arrow fa-solid fa-arrow-right text-sm text-white/50"></i></a></li>
+      <li><a href="https://www.youtube.com/channel/UCr9PGzwTyw00UPQktjLECMg" target="_blank" rel="noopener" class="next-tile">
+        <i class="fa-brands fa-youtube text-2xl text-red-400 w-8 text-center"></i>
+        <div class="flex-1 min-w-0"><div class="font-bold text-[15px]">강의 영상 보기</div><div class="mt-0.5 text-xs text-white/55">유튜브 채널에서 강의 다시 보기</div></div>
+        <i class="next-arrow fa-solid fa-arrow-up-right-from-square text-sm text-white/50"></i></a></li>
+    </ul>
+  </div>
+</section>
+
 <footer class="bg-navy-950 text-white/55 pb-20 lg:pb-0 border-t-4 border-gold-500">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 py-10 grid lg:grid-cols-12 gap-8">
     <div class="lg:col-span-5 flex items-start gap-4">
@@ -733,6 +795,7 @@ tailwind.config = {
         <li><a href="#program" class="hover:text-white">학과·교육</a></li>
         <li><a href="#admission" class="hover:text-white">입학 안내</a></li>
         <li><a href="#board" class="hover:text-white">공지사항</a></li>
+        <li><a href="#events" class="hover:text-white">일정</a></li>
         <li><a href="#lectures" class="hover:text-white">미디어</a></li>
         <li><a href="#contact" class="hover:text-white">캠퍼스 안내</a></li>
       </ul>
@@ -794,7 +857,8 @@ tailwind.config = {
   }
   // ✅ 파일 내용 조회: raw.githubusercontent 우선 → jsDelivr fallback (rate limit 대응)
   async function robustFetchText(path){
-    const urls = [ RAW_FILE(path), CDN_FILE(path) ];
+    const IS_LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+    const urls = (IS_LOCAL ? [String(path).replace(/^\/+/, '')] : []).concat([ RAW_FILE(path), CDN_FILE(path) ]);
     let lastErr;
     for(const u of urls){
       try{
@@ -1631,13 +1695,23 @@ tailwind.config = {
     const d = new Date(ts);
     return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
   }
-  async function loadPosts() {
-    const container = document.getElementById('latest-post-container');
-    if (!container) return;
-    const empty = (msg) => { container.innerHTML = `<div class="text-center text-navy-400 py-10 text-sm border-b border-navy-100">${msg}</div>`; };
-    try {
+  // 머리말의 추가 항목(event_date 등). 교회 사이트의 parseFrontmatter 는 title/date/image 만 읽는다.
+  function fmField(text, key){
+    const m = String(text || '').replace(/\r\n?/g, '\n').match(/^---\n([\s\S]*?)\n---/);
+    if(!m) return '';
+    const r = m[1].match(new RegExp('^' + key + '\\s*:\\s*(.*)$', 'mi'));
+    return r ? r[1].trim().replace(/^["']/, '').replace(/["']$/, '').trim() : '';
+  }
+  function localDay(s){
+    const m = String(s || '').match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+  }
+  // 공지사항과 일정이 같은 posts/ 목록을 한 번만 받아서 나눠 쓴다.
+  let postsPromise = null;
+  function getPosts(){
+    if (postsPromise) return postsPromise;
+    postsPromise = (async () => {
       const mdPaths = await listMdFilesInFolder('posts');
-      if (!mdPaths.length) { empty('등록된 공지사항이 없습니다.'); return; }
       const posts = await Promise.all(mdPaths.map(async (path) => {
         try{
           const text = await robustFetchText(path);
@@ -1649,12 +1723,83 @@ tailwind.config = {
             date: fmtDate(rawDate, fm.date),
             bodyHtml: mdToHtml(fm.body),
             headerImageUrl: fm.image ? toRawImageUrl(fm.image) : '',
-            rawDate
+            rawDate,
+            eventStart: localDay(fmField(text, 'event_date')),
+            eventEnd: localDay(fmField(text, 'event_end')),
+            eventTime: fmField(text, 'event_time'),
+            eventPlace: fmField(text, 'event_place')
           };
         }catch(_){ return null; }
       }));
-      const valid = posts.filter(Boolean).sort((a, b) => b.rawDate - a.rawDate);
-      if (!valid.length) { empty('공지사항을 불러올 수 없습니다.'); return; }
+      return posts.filter(Boolean).sort((a, b) => b.rawDate - a.rawDate);
+    })();
+    postsPromise.catch(() => { postsPromise = null; });
+    return postsPromise;
+  }
+  async function loadEvents() {
+    const box = document.getElementById('events-container');
+    if (!box) return;
+    const note = (msg) => `<div class="text-center text-navy-500 py-8 text-sm border-b border-navy-100 leading-relaxed">${msg}</div>`;
+    try {
+      const all = (await getPosts()).filter(p => p.eventStart);
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const lastDay = (p) => (p.eventEnd && p.eventEnd > p.eventStart) ? p.eventEnd : p.eventStart;
+      const upcoming = all.filter(p => lastDay(p) >= today).sort((a, b) => a.eventStart - b.eventStart);
+      const past = all.filter(p => lastDay(p) < today).sort((a, b) => b.eventStart - a.eventStart).slice(0, 3);
+      const WD = ['일', '월', '화', '수', '목', '금', '토'];
+      const pad = (n) => String(n).padStart(2, '0');
+      const DAY = 24 * 60 * 60 * 1000;
+      const row = (p, i, isPast) => {
+        const s = p.eventStart, e = p.eventEnd;
+        const diff = Math.round((s - today) / DAY);
+        const badge = isPast ? '<span class="ev-badge ev-past">종료</span>'
+          : diff > 0 ? `<span class="ev-badge">D-${diff}</span>`
+          : diff === 0 ? '<span class="ev-badge ev-now">오늘</span>'
+          : '<span class="ev-badge ev-now">진행 중</span>';
+        const range = (e && e > s) ? ` ~ ${e.getMonth() + 1}.${e.getDate()}(${WD[e.getDay()]})` : '';
+        const meta = [
+          (p.eventTime || range) ? `<span><i class="fa-regular fa-clock mr-1 text-navy-400"></i>${range ? `${s.getMonth() + 1}.${s.getDate()}(${WD[s.getDay()]})${range}` : ''}${range && p.eventTime ? ' · ' : ''}${escapeHtml(p.eventTime)}</span>` : '',
+          p.eventPlace ? `<span><i class="fa-solid fa-location-dot mr-1 text-navy-400"></i>${escapeHtml(p.eventPlace)}</span>` : ''
+        ].filter(Boolean).join('');
+        return `
+        <button type="button" data-k="${isPast ? 'p' : 'u'}${i}" class="ev-row${isPast ? ' is-past' : ''}">
+          <div class="ev-date"><div class="ev-mon">${s.getFullYear()}.${pad(s.getMonth() + 1)}</div><div class="ev-day">${s.getDate()}</div><div class="ev-wd">${WD[s.getDay()]}요일</div></div>
+          <div class="min-w-0">
+            <div>${badge}</div>
+            <div class="ev-title mt-1.5 font-bold text-navy-900 text-[15px] sm:text-base leading-snug">${escapeHtml(p.title)}</div>
+            <div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-xs sm:text-[13px] text-navy-600">${meta}</div>
+          </div>
+          <i class="ev-go fa-solid fa-chevron-right text-xs text-navy-300 pr-2"></i>
+        </button>`;
+      };
+      let html = '';
+      if (upcoming.length) {
+        html += upcoming.map((p, i) => row(p, i, false)).join('');
+      } else {
+        html += note('지금은 예정된 일정이 없습니다.<br class="sm:hidden"> 새 일정이 정해지면 이곳과 공지사항, 유튜브 채널에서 안내해 드립니다.');
+      }
+      if (past.length) {
+        html += `<div class="pt-6 pb-2 text-xs font-bold text-navy-500 tracking-wide">지난 행사</div>` + past.map((p, i) => row(p, i, true)).join('');
+      }
+      if (!all.length && !upcoming.length) html = note('등록된 일정이 없습니다. 새 일정은 공지사항과 유튜브 채널에서 안내해 드립니다.');
+      box.innerHTML = html;
+      box.querySelectorAll('button[data-k]').forEach(btn => {
+        const k = btn.dataset.k;
+        const p = (k[0] === 'p' ? past : upcoming)[+k.slice(1)];
+        btn.onclick = () => openPostModal(p.title, p.date, p.bodyHtml, p.headerImageUrl);
+      });
+    } catch (error) {
+      console.error('일정 로드 실패:', error);
+      box.innerHTML = note('일정을 불러오지 못했습니다. 공지사항이나 유튜브 채널을 확인해 주세요.');
+    }
+  }
+  async function loadPosts() {
+    const container = document.getElementById('latest-post-container');
+    if (!container) return;
+    const empty = (msg) => { container.innerHTML = `<div class="text-center text-navy-400 py-10 text-sm border-b border-navy-100">${msg}</div>`; };
+    try {
+      const valid = await getPosts();
+      if (!valid.length) { empty('등록된 공지사항이 없습니다.'); return; }
       const rows = valid.slice(0, 8);
       const NEW_MS = 14 * 24 * 60 * 60 * 1000;
       container.innerHTML = `
@@ -1751,6 +1896,7 @@ tailwind.config = {
     if(lbPrevBtn) lbPrevBtn.addEventListener('click', (e) => { e.stopPropagation(); lbPrev(); });
     if(lbNextBtn) lbNextBtn.addEventListener('click', (e) => { e.stopPropagation(); lbNext(); });
     initLightboxSwipe();
+    loadEvents();
     loadPosts();
     loadGallery();
   });
