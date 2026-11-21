@@ -637,6 +637,7 @@ tailwind.config = {
           </div>
           <button type="submit" class="mt-5 w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3.5 rounded-lg transition flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-paper-plane"></i> 문의 보내기</button>
           <p class="mt-2 text-[11px] text-navy-500 text-center">PC에서는 문의 내용이 복사되며, 오른쪽 번호로 문자나 전화를 주시면 됩니다.</p>
+          <p class="mt-1 text-[11px] text-navy-400 text-center">적은 내용은 홈페이지에 저장되지 않습니다. <a href="privacy.html" class="underline underline-offset-2 hover:text-crimson-600">개인정보처리방침</a></p>
         </form>
       </div>
       <div class="lg:col-span-5 reveal">
@@ -802,8 +803,12 @@ tailwind.config = {
     </div>
   </div>
   <div class="border-t border-white/10">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-4 text-[11px] text-white/40">
-      Copyright © <span id="year">2026</span> DSU Korea Gapyeong Campus · Dunamis &amp; Sophia University. All rights reserved.
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] text-white/40">
+      <div>Copyright © <span id="year">2026</span> DSU Korea Gapyeong Campus · Dunamis &amp; Sophia University. All rights reserved.</div>
+      <div class="flex items-center gap-4">
+        <a href="privacy.html" class="text-white/70 hover:text-white font-bold">개인정보처리방침</a>
+        <a href="terms.html" class="hover:text-white">이용약관</a>
+      </div>
     </div>
   </div>
 </footer>
