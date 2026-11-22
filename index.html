@@ -290,9 +290,12 @@ tailwind.config = {
   }
   .hero-crest{ position:absolute; right:-60px; top:50%; transform:translateY(-50%); width:520px; opacity:.07; pointer-events:none; }
   @media (max-width:1023px){ .hero-crest{ width:340px; right:-110px; opacity:.06; } }
-  .quick-tile{ transition: background .25s ease, color .25s ease; }
-  .quick-tile:hover{ background:#0b1f3a; color:#fff; }
+  .quick-tile{ background:#fff; border-radius:18px; box-shadow:0 10px 24px -12px rgba(6,20,42,.45); transition: background .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease; }
+  .quick-tile:hover{ background:#0b1f3a; color:#fff; transform:translateY(-3px); box-shadow:0 16px 30px -12px rgba(6,20,42,.6); }
+  .qt-ico{ width:46px; height:46px; border-radius:9999px; display:flex; align-items:center; justify-content:center; background:#f6efe2; transition: background .25s ease; }
+  .quick-tile:hover .qt-ico{ background:rgba(255,255,255,.1); }
   .quick-tile:hover i{ color:#d9b877; }
+  @media (max-width:639px){ .quick-tile{ border-radius:14px; } .qt-ico{ width:40px; height:40px; } }
   .step-num{ font-family:'Cormorant Garamond', serif; font-weight:700; }
   .notice-row:hover .notice-title{ color:#8b1e2d; text-decoration: underline; text-underline-offset: 3px; }
   #header.glass .util-bar{ display:none; }
@@ -429,13 +432,13 @@ tailwind.config = {
 <!-- 바로가기 -->
 <section aria-label="바로가기" class="relative z-20 bg-navy-950"><div class="absolute inset-x-0 top-0 h-1/2 bg-[#0d2442] -mt-px"></div>
   <div class="relative max-w-6xl mx-auto px-5 sm:px-8 -translate-y-0">
-    <ul class="grid grid-cols-3 lg:grid-cols-6 bg-white shadow-xl border border-navy-100 divide-x divide-y lg:divide-y-0 divide-navy-100">
-      <li><a href="#about" class="quick-tile flex flex-col items-center justify-center gap-2 py-5 sm:py-6 text-navy-900 text-xs sm:text-sm font-bold"><i class="fa-solid fa-building-columns text-xl sm:text-2xl text-crimson-600 transition"></i>대학원 소개</a></li>
-      <li><a href="#program" class="quick-tile flex flex-col items-center justify-center gap-2 py-5 sm:py-6 text-navy-900 text-xs sm:text-sm font-bold"><i class="fa-solid fa-book-open text-xl sm:text-2xl text-crimson-600 transition"></i>교육과정</a></li>
-      <li><a href="#admission" class="quick-tile flex flex-col items-center justify-center gap-2 py-5 sm:py-6 text-navy-900 text-xs sm:text-sm font-bold"><i class="fa-solid fa-user-graduate text-xl sm:text-2xl text-crimson-600 transition"></i>입학 안내</a></li>
-      <li><a href="#board" class="quick-tile flex flex-col items-center justify-center gap-2 py-5 sm:py-6 text-navy-900 text-xs sm:text-sm font-bold"><i class="fa-solid fa-bullhorn text-xl sm:text-2xl text-crimson-600 transition"></i>공지사항</a></li>
-      <li><a href="#lectures" class="quick-tile flex flex-col items-center justify-center gap-2 py-5 sm:py-6 text-navy-900 text-xs sm:text-sm font-bold"><i class="fa-solid fa-circle-play text-xl sm:text-2xl text-crimson-600 transition"></i>강의 영상</a></li>
-      <li><a href="#contact" class="quick-tile flex flex-col items-center justify-center gap-2 py-5 sm:py-6 text-navy-900 text-xs sm:text-sm font-bold"><i class="fa-solid fa-location-dot text-xl sm:text-2xl text-crimson-600 transition"></i>오시는 길</a></li>
+    <ul class="grid grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
+      <li><a href="#about" class="quick-tile flex flex-col items-center justify-center gap-2.5 py-4 sm:py-5 text-navy-900 text-xs sm:text-sm font-bold"><span class="qt-ico"><i class="fa-solid fa-building-columns text-lg sm:text-xl text-crimson-600 transition"></i></span>대학원 소개</a></li>
+      <li><a href="#program" class="quick-tile flex flex-col items-center justify-center gap-2.5 py-4 sm:py-5 text-navy-900 text-xs sm:text-sm font-bold"><span class="qt-ico"><i class="fa-solid fa-book-open text-lg sm:text-xl text-crimson-600 transition"></i></span>교육과정</a></li>
+      <li><a href="#admission" class="quick-tile flex flex-col items-center justify-center gap-2.5 py-4 sm:py-5 text-navy-900 text-xs sm:text-sm font-bold"><span class="qt-ico"><i class="fa-solid fa-user-graduate text-lg sm:text-xl text-crimson-600 transition"></i></span>입학 안내</a></li>
+      <li><a href="#board" class="quick-tile flex flex-col items-center justify-center gap-2.5 py-4 sm:py-5 text-navy-900 text-xs sm:text-sm font-bold"><span class="qt-ico"><i class="fa-solid fa-bullhorn text-lg sm:text-xl text-crimson-600 transition"></i></span>공지사항</a></li>
+      <li><a href="#lectures" class="quick-tile flex flex-col items-center justify-center gap-2.5 py-4 sm:py-5 text-navy-900 text-xs sm:text-sm font-bold"><span class="qt-ico"><i class="fa-solid fa-circle-play text-lg sm:text-xl text-crimson-600 transition"></i></span>강의 영상</a></li>
+      <li><a href="#contact" class="quick-tile flex flex-col items-center justify-center gap-2.5 py-4 sm:py-5 text-navy-900 text-xs sm:text-sm font-bold"><span class="qt-ico"><i class="fa-solid fa-location-dot text-lg sm:text-xl text-crimson-600 transition"></i></span>오시는 길</a></li>
     </ul>
   </div>
 </section>
